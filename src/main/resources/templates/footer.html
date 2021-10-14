@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link rel="stylesheet" href="/style/style.css">
+	<title>Tecno Compara</title>
+</head>
+
+
+<body>
+	<!-- FOOTER -->
+	<div th:fragment="footer">
+		<footer>
+		<div class="footer-links">
+
+			<div class="container">
+				<div id="footer-info" class="row pb-4">
+					<div class="col-6 col-md-3 pt-5">
+						<h4 style="color: #959595">ACERCA DE</h4>
+						<a href="/faq">
+							<h6 style="color: #efefef;">Preguntas frecuentes</h6>
+						</a>
+						<a href="mailto:desanajm@gmail.com">
+							<h6 style="color: #efefef;">Contacto</h6>
+						</a>
+					</div>
+
+					<div class="col-6 col-md-3 pt-5">
+						<h4 style="color: #959595">SECCIONES</h4>
+
+						<a href="/usuario/perfilUsuario">
+							<h6 style="color: #efefef;">Favoritos</h6>
+						</a>
+
+					</div>
+
+					<div class="col-6 col-md-3 pt-5">
+						<h4 style="color: #959595">SEGUINOS</h4>
+						<div class="social">
+							<a href="https://www.facebook.com/eggeducacion" target="_blank">
+								<i id="facebook" style="color: #efefef;" class="fab fa-facebook-f gray-white pr-2"></i>
+								<span style="color: #efefef; text-decoration: none;">Facebook</span>
+							</a><br>
+							<a href="https://www.instagram.com/eggcooperation/" target="_blank">
+								<i id="instagram" style="color: #efefef;" class="fab fa-instagram gray-white pr-1"></i>
+								<span style="color: #efefef;">Instagram</span>
+							</a><br>
+							<a href="https://twitter.com/search?q=EggEducacion&src=typed_query" target="_blank">
+								<i id="twitter" style="color: #efefef;" class="fab fa-twitter gray-white pr-1"></i>
+								<span style="color: #efefef;">Twitter</span>
+							</a>
+						</div>
+					</div>
+
+					<div class="col-6 col-md-3 pt-5">
+						<h4 style="color: #959595">COLABORA</h4>
+						<a href="https://eggeducacion.com/es-AR/" target="_blank">
+							<h6 style="color: #efefef;">Egg Educacion</h6>
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="footer-end">
+			<p>Copyright ©
+				<script>
+					document.write(new Date().getFullYear())
+				</script>
+				- TecnoCompara - Todos los derechos reservados</p>
+		</div>
+	</footer>
+		
+   </div>     
+        
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

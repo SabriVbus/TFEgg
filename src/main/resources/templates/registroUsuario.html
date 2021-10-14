@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registro</title>
+	<link rel="shortcut icon" href="/assets/img-loginyregistro/icono.png">
+
+
+	<!-- FRAMEWORK BOOTSTRAP -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/style/registroUsuario.css" th:href="@{/style/registroUsuario.css}">
+	<link rel="stylesheet" type="text/css" href="/style/style.css" th:href="@{/style/style.css}">
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link rel="stylesheet" href="/style/registroUsuario.css">
+
+
+
+</head>
+
+<body>
+
+	<div th:insert="navbar :: header">...</div>
+
+	<div class="modal-dialog text-center">
+		<div class="col-sm-8 main-section">
+			<div class="modal-content">
+				<div class="col-12 inicio">
+					<h4> Registrate </h4>
+				</div>
+
+				<form action="/usuario/registro" method="POST" enctype="multipart/form-data">
+
+					<p th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert"> </p>
+
+					<div>
+						<label style="margin-right: 100%" for="inputName4" class="form-label">
+							<h6>Nombre</h6>
+						</label>
+						<input type="text" class="form-control" id="inputEmail4" aria-label="nombre" name="nombre"
+							th:value="${nombre}" required>
+					</div>
+					<div>
+						<label style="margin-right: 100%" for="inputName4" class="form-label">
+							<h6>Apellido</h6>
+						</label>
+						<input type="text" class="form-control" aria-label="apellido" name="apellido"
+							th:value="${apellido}" required>
+					</div>
+					<div>
+						<label style="margin-right: 85%" for="inputName4" class="form-label">
+							<h6>E-Mail</h6>
+						</label>
+						<input type="email" class="form-control" aria-label="email" name="mail" th:value="${mail}"
+							required>
+					</div>
+					<div>
+						<label style="margin-right: 250px" for="inputName4" class="form-label">
+							<h6>Contraseña</h6>
+						</label>
+						<input type="password" id="password" class="form-control" aria-label="contraseña"
+							name="password" onkeyup='check();' th:value="${password}" required>
+						<small><i>La contraseña debe tener como mínimo 6 caracteres</i></small>
+					</div>
+					<div>
+						<label style="margin-right: 190px" for="inputName4" class="form-label">
+							<h6>Repetir Contraseña</h6>
+						</label>
+						<input type="password" id="password2" class="form-control" aria-label="contraseña2"
+							name="password2" onkeyup='check();' th:value="${password2}" required>
+						<span id='message'></span>
+					</div>
+
+					<div class="col-12 forgot">
+						<button type="submit" class="btn btn-primary"> Registrarse </button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--FOOTER-->
+	<div class="container-footer">
+		<div th:insert="footer :: footer">...</div>
+	</div>
+
+	<script>
+		var check = function () {
+			if (document.getElementById('password').value ==
+				document.getElementById('password2').value) {
+				document.getElementById('message').style.color = 'green';
+				document.getElementById('message').innerHTML = 'Las contraseñas coinciden';
+			} else {
+				document.getElementById('message').style.color = 'red';
+				document.getElementById('message').innerHTML = 'Las contraseñas no coinciden';
+			}
+		}
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>

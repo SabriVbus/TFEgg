@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link rel="stylesheet" href="/style/style.css">
+	<link rel="shortcut icon" href="/assets/img-loginyregistro/icono.png">
+
+	<title>Tecno Compara</title>
+</head>
+
+
+<body>
+	<!-- SLOGAN -->
+	<h5 style="color: white;">.</h5>
+	<h5 style="color: white;">.</h5>
+
+	<div style="margin-top: 15px;" id="legend" class="row gray-background-1 justify-content-center py-1">
+		<div class="d-flex align-items-center">
+			<h4 style="font-size: 20px; margin: 1px 0px">ENCONTRÁ EL MEJOR
+				PRODUCTO AL MEJOR PRECIO</h4>
+		</div>
+	</div>
+
+
+
+	<!-- SLIDER -->
+	<div th:insert="slider :: div">...</div>
+
+	<!-- PRODUCT GRID -->
+	<div style="background-color: #efefef;">
+
+		<div>
+			<h1 style="text-align: center; text-transform: uppercase; margin-bottom: 30px;"
+				th:if="${resultados != null}" th:text="${resultados}"></h1>
+
+			<h1 style="text-align: center; text-transform: uppercase; margin-bottom: 30px;" th:if="${error != null}"
+				th:text="${error}"></h1>
+		</div>
+
+
+		<div style="background-color: #ffff;" class="container mydiv">
+
+
+			<br>
+			<div style="margin-bottom: 15px;">
+
+				<!--FILTRO PROVEEDOR
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						Proveedor
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">eee</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</div>-->
+
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						Marca
+					</button>
+					<div class="dropdown-menu">
+						<li th:each="marca:${marcas}">
+							<a class="dropdown-item" th:href="@{buscar/}+${marca}" th:text="${marca}"></a>
+						</li>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="row">
+
+				<!--THYMELEAF EACH CARD-->
+				<div class="col-md-4" th:each="producto:${productos}">
+					<div class="bbb_deals">
+						<div th:text="${producto.nombre}" class="bbb_deals_title"></div>
+						<div class="bbb_deals_slider_container">
+							<div class=" bbb_deals_item">
+								<a th:href="@{buscar/vista/}+${producto.idProducto}">
+									<div class="bbb_deals_image"><img
+											th:src="${'/foto/producto/' + producto.idProducto}" alt=""></div>
+								</a>
+								<div class="bbb_deals_content">
+									<div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+										<div class="bbb_deals_item_category">
+											<a style="pointer-events: none;" href="#" th:text="${producto.tipo}"></a>
+										</div>
+									</div>
+									<div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+										<div class="bbb_deals_item_name" th:text="${producto.marca}"></div>
+									</div>
+									<div class="available">
+										<div class="available_line d-flex flex-row justify-content-start">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<!--FOOTER-->
+	<div th:insert="footer :: footer">...</div>
+
+	<!-- NAVBAR -->
+	<div th:insert="navbar :: header">...</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

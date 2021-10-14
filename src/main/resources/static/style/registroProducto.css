@@ -1,0 +1,72 @@
+body{
+    background: url(../assets/img-registroproducto/background.jpg)  no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main-section{
+    margin:0 auto;
+    margin-top:25%;
+    padding: 0;
+}
+
+.modal-content{
+    background-color:silver;
+    padding: 0 10px;
+    box-shadow: 0px 0px 3px #848484;
+    border-radius: 5px;
+    opacity: .97;
+}
+
+.form-content{
+    background-color:lightsteelblue;
+    padding: 0 10px;
+    box-shadow: 0px 0px 5px #848484;
+    opacity: .97;
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-top: 2%;
+}
+
+.inicio{
+    padding: 20px 0;
+    margin-left:3%;
+    height: 18px;
+}
+
+.form-label {
+    padding: 10px 0;
+    height: 20px;
+}
+
+.text-light { color: var(--light) !important; }
+.bg-dark { background-color: var(--dark) ; }
+.bg-dark-x { background-color: var(--dark-x); }
+
+.error{
+    text-align: left;
+    color: red;
+    font-weight: bold;
+    font-size: medium;
+    }
+    
+.btn {
+    min-height: 3.125rem;
+    font-weight: 600;
+}
+
+
+.form-control {
+    min-height: 2.125rem;
+    line-height: initial;
+}
+
+.foto-img{
+    padding: 200px 0;
+   
+}
+
+.form-group{
+    background-color:lightsteelblue;
+ 
+}
+

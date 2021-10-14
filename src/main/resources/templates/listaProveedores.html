@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Proveedores</title>
+    <link rel="shortcut icon" href="/assets/img-loginyregistro/icono.png">
+
+
+    <!-- FRAMEWORK BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ffec4ec2ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/style/registroProducto.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light" style="background-color:silver; opacity: .85">
+        <div class="col-12 logotipo-img">
+            <a class="navbar-brand" href="http://localhost:8080/">
+                <img src="/assets/img-registroproducto/logotipo.png" width="180,64" height="34,86"
+                    class="d-inline-block align-top" alt="">
+            </a>
+        </div>
+    </nav>
+    <section>
+        <div class="row g-0">
+            <div class="col-lg-10 form-content flex-column align-items-end">
+                <div class="row">
+                    <div class="col-lg-12 inicio">
+                        <h3>Lista de Proveedores</h3>
+                    </div>
+                </div>
+                <div class="card-footer"style="margin-top: 25px">
+
+                    <div class="col" aria-setsize="1">
+                        <div class="container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Logo</th>
+                                  
+                                    </tr>
+                                </thead>
+                                <tbody th:each="proveedor: ${proveedor}">
+                                    <tr>
+                                        <td th:text="${proveedor.nombre}"></td>
+                                        <td th:file="${proveedor.fotoProveedor}"></td>
+                                        <td>
+                                            <button class="btn btn-warning"
+                                                th:href="@{/proveedor/modificarProveedor/}+${proveedor.idProveedor}">Modificar</button>
+                                                <button class="btn btn-danger"
+                                                th:href="@{/proveedor/bajaProveedor/}+${proveedor.idProveedor}">Dar de Baja</button>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            </form>
+        </div>
+        </div>
+        </div>
+    </section>
+
+	<div th:insert="footer :: footer">...</div>
+</body>
+
+</html>

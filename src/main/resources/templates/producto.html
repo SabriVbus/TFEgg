@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link rel="stylesheet" href="/style/style.css">
+	<link rel="shortcut icon" href="/assets/img-loginyregistro/icono.png">
+
+	<title>Tecno Compara</title>
+</head>
+
+
+<body>
+	<!-- SLOGAN -->
+	<h5 style="color: white;">.</h5>
+	<h5 style="color: white;">.</h5>
+
+	<div style="margin-top: 15px;" id="legend" class="row gray-background-1 justify-content-center py-1">
+		<div class="d-flex align-items-center">
+			<h4 style="font-size: 20px; margin: 1px 0px">ENCONTRÁ EL MEJOR
+				PRODUCTO AL MEJOR PRECIO</h4>
+		</div>
+	</div>
+
+
+
+	<!-- SLIDER -->
+	<div th:insert="slider :: div">...</div>
+
+
+	<!-- PRODUCT GRID -->
+	<div style="background-color: #efefef;">
+
+
+
+
+		<div style="background-color: #ffff;" class="container mydiv">
+
+
+			<br>
+
+
+			<!--THYMELEAF EACH CARD-->
+			<div th:each="producto:${productos}">
+				<div class="bbb_deals">
+					<h4 style="text-align: center; margin-bottom: 20px; letter-spacing: 1px;"
+						th:text="${producto.nombre}"></h4>
+					<div class="bbb_deals_slider_container">
+						<div class=" bbb_deals_item">
+							<div class="bbb_deals_image"><img style="width: 70%; display: block; margin: auto;"
+									th:src="${'/foto/producto/' + producto.idProducto}" alt=""></div>
+							<div class="bbb_deals_content">
+								<div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+									<div class="bbb_deals_item_category">
+										<a style="pointer-events: none; font-size: 20px" href="#"
+											th:text="${producto.tipo}"></a>
+									</div>
+								</div>
+								<div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+									<div class="bbb_deals_item_name" th:text="${producto.marca}"></div>
+								</div>
+								<div class="available">
+									<div class="available_line d-flex flex-row justify-content-start">
+										<div class="sold_stars ml-auto">
+                                                                                    
+                                                                                        <a th:if="${#authorization.expression('hasAnyRole(''ADMIN'')')}" th:href="@{/producto/modificarProducto(id=__${producto.idProducto}__)}">
+                                                                                            <button type="button" class="btn btn-success">Modificar Producto</button></a>  
+                                                                                                  
+                                                                                        <a th:href="@{/producto/eliminarProducto(id=__${producto.idProducto}__)}">
+                                                                                            <button type="button" class="btn btn-danger" 
+                                                                                                   th:if="${#authorization.expression('hasAnyRole(''ADMIN'')')}" >Eliminar Producto</button></a>
+                                                                                    
+											<a onclick="agregarFav();"
+												th:href="@{/usuario/guardaFavorito/}+${producto.idProducto}">
+												<i class="fa fa-heart f-1-5x orange"
+													style="color: #ab341b; font-size: 25px; margin: 10px;"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<p style="text-align: center; font-family: 'Roboto';" th:text="${producto.descripcion}"></p>
+
+					<div style="margin-top: 50px;">
+						<h5 style="margin-bottom: 15px;">Comparación de precios</h5>
+
+						<div class="btn-group">
+							<button style="margin-bottom: 10px;" type="button" class="btn btn-primary dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Ordenar por
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" style="text-decoration: none;"
+									th:href="@{/producto/ordenar/precio/menor/}+${producto.idProducto}">Menor precio</a>
+								<a class="dropdown-item"
+									th:href="@{/producto/ordenar/precio/mayor/}+${producto.idProducto}">Mayor precio</a>
+							</div>
+						</div>
+
+
+
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Proveedor</th>
+									<th scope="col">Precio</th>
+									<th scope="col">Link</th>
+									<th scope="col" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" >ADMIN</th>
+								</tr>
+							</thead>
+							<tbody th:each = "link : ${links}">
+								<tr>
+									<th scope="row" th:text="${link.proveedor.nombre}"></th>
+									<td th:text="'$'+${link.precioProducto}"></td>
+									<td ><a th:href="${link.url}" target="_blank"> Ir al Link</a></td>
+									<td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+									<button class="btn btn-danger"><a th:href="@{/link/eliminarLink/}+${producto.idProducto}+@{/}+${link.idLink}" style="text-decoration: none; color: white;"> Eliminar</a></button>
+									<button class="btn btn-warning"><a th:href="@{/link/}+${producto.idProducto}+@{/}+${link.idLink}" style="text-decoration: none; color: black;"> Modificar </a></button></td>
+								</tr>
+								
+							</tbody>
+						</table>
+						
+					<div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+						<button type="button" class="btn btn-success"><a style="text-decoration: none; color: white;" th:href="@{/link/}+${producto.idProducto}+@{/null}">Agregar Link</a></button>
+					</div>
+					</div>
+
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--FOOTER-->
+<div th:insert="footer :: footer">...</div>
+
+	<!-- NAVBAR -->
+	<div th:insert="navbar :: header">...</div>
+
+
+	<script>
+
+		function agregarFav() {
+			window.alert("El producto fue agregado a tus favoritos")
+		}
+
+	</script>
+	
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+		
+		
+</body>
+
+</html>

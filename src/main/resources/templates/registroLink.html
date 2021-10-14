@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro Link</title>
+<link rel="shortcut icon" href="/assets/img-loginyregistro/icono.png">
+
+
+<!-- FRAMEWORK BOOTSTRAP -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+	integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;600&display=swap"
+	rel="stylesheet">
+<script src="https://kit.fontawesome.com/ffec4ec2ed.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css"
+	href="/style/registroProducto.css">
+</head>
+
+<body>
+	<h5 style="color: white;">.</h5>
+	<h5 style="color: white;">.</h5>
+	<!-- NAVBAR -->
+	<div th:insert="navbar :: header">...</div>
+	<section>
+		<div class="row g-0">
+			<div class="col-lg-10 form-content flex-column align-items-end">
+				<div class="row">
+					<div class="col-lg-12 inicio">
+						<h3 th:text="${titulo}"></h3>
+					</div>
+				</div>
+				<div class="align-self-center w-100 px-lg-4 py-lg-4 p-4">
+					<p th:if="${error != null}" th:text="${error}"></p>
+
+					<form
+						th:action="${action} == 'N' ? @{/link/cargarLink} : @{/link/modificarLink}"
+						method="POST">
+						<div class="row">
+							<div class="col-4">
+								<div>
+									<label style="margin-right: 250px" for="inputName4"
+										class="form-label">
+										<h6>URL</h6>
+									</label> <input type="url" class="form-control" id="inputEmail4"
+										aria-label="url" name="url" th:value="${url}">
+								</div>
+							</div>
+							<div class="col-4">
+								<div>
+									<label style="margin-right: 250px" for="inputName4"
+										class="form-label">
+										<h6>Precio</h6>
+									</label> <input type="number" class="form-control" aria-label="precio"
+										name="precio" th:value="${precio}">
+								</div>
+
+							</div>
+							<div class="col-4">
+								<div>
+									<label style="margin-right: 260px" for="inputName4"
+										class="form-label">
+										<h6>Proveedor</h6>
+									</label> <select class="form-control" name="idProveedor">
+										<option th:each="proveedor : ${proveedores}"
+											th:value="${proveedor.idProveedor}"
+											th:text="${proveedor.nombre}"
+											th:selected="${proveedor.idProveedor == idProveedor}"></option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-4 text-center container">
+								<button type="submit" class="btn btn-dark w-500"
+									th:text="${boton}"></button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>

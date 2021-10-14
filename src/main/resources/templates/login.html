@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="shortcut icon" href="/assets/img-loginyregistro/icono.png">
+
+	<!-- FRAMEWORK BOOTSTRAP -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/style/login.css" th:href="@{/style/login.css}">
+	<link rel="stylesheet" type="text/css" href="/style/style.css" th:href="@{/style/style.css}">
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link rel="stylesheet" href="/style/login.css">
+
+
+
+</head>
+
+<body>
+	<div th:insert="navbar :: header">...</div>
+
+	<div class="modal-dialog text-center">
+		<div class="col-sm-8 main-section">
+			<div class="modal-content">
+				<div class="col-12 inicio">
+					<h4> Ingresá con tu cuenta </h4>
+				</div>
+				<div>
+					<form class="col-12" action="/logincheck" method="POST">
+
+						<p th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert"></p>
+
+						<div class="form-group" id="user-group">
+							<input type="email" class="form-control" name="mail" placeholder="E-mail" required>
+						</div>
+
+						<div class="form-group" id="contrasena-group">
+							<input type="password" class="form-control" name="password" placeholder="Clave" required>
+						</div>
+						<button type="submit" class="btn btn-primary"> Ingresar </button>
+
+					</form>
+				</div>
+				<div class="col-16 register">
+					<l4>¿No tenés un usuario? </l4> <a href="/usuario/registrar">Creá tu cuenta</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--FOOTER-->
+	<div class="container-footer">
+		<div th:insert="footer :: footer">...</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
